@@ -1,0 +1,10 @@
+name = Annotate
+description = "Allow user to annotate nodes."
+package = Module Book
+core = 7.x
+
+files[] = annotate.module
+files[] = annotate.install
+files[] = annotate.admin.inc
+
+configure=admin/config/content/annotate/settings

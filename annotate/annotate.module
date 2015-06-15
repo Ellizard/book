@@ -1,0 +1,8 @@
+<?php
+
+/*
+ * @file
+ * Lets users and private annitation ti nodes
+ * so that authenticated users may make notes.
+ */
+
