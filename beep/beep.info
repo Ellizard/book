@@ -1,0 +1,6 @@
+name = beep
+description = Simulates a system beep
+package = Module Book
+core = 7.x
+
+files[] = beep.module
