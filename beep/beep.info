@@ -1,4 +1,4 @@
-name = beep
+name = Beep
 description = Simulates a system beep
 package = Module Book
 core = 7.x
