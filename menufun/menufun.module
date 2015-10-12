@@ -1,0 +1,83 @@
+<?php
+
+/**
+ * Use this module to learn about Drupal's menu system
+ */
+
+function menufun_menu() {
+    $items = array();
+
+    $items['menufun'] = array(
+        'title' => 'Menu Fun',
+        'title callback' => 'menufun_title',
+        'page callback' => 'menufun_hello',
+        'page arguments' => array('Artem', 'Ostavnenko'),
+        'access callback' => TRUE,
+        'type' => MENU_CALLBACK,
+    );
+
+    $items['menufun_greet'] = array(
+        'title' => 'Menu Fun Greetings',
+        'page callback' => 'menufun_greetings',
+        'file' => 'menufun_greetings.inc',
+        'page arguments' => array('Jane', 'Doe'),
+        'access callback' => TRUE,
+        'type' => MENU_NORMAL_ITEM,
+    );
+
+    $items['menufun/farewell'] = array(
+        'title' => 'Farewell',
+        'page callback' => 'menufun_farewell',
+        'file' => 'menufun_greetings.inc',
+        'access callback' => 'user_access',
+        'access arguments' => array('receive greeting'),
+        'type' => MENU_NORMAL_ITEM,
+    );
+
+    $items['menufun/%'] = array(
+        'title' => 'HI',
+        'page callback' => 'menufun_hello',
+        'page arguments' => array(1),
+        'access callback' => TRUE,
+    );
+
+    $items['menufun/%/bar/baz'] = array(
+        'title' => 'HI',
+        'page callback' => 'menufun_hello',
+        'page arguments' => array(1), //The matched wildcard
+        'access callback' => TRUE,
+    );
+
+    return $items;
+}
+
+/**
+ * Page callback
+ */
+function menufun_hello($name = NULL) {
+    return t('Hello. $name is @name', array('@name' => $name));
+}
+
+/**
+ * Title callback
+ */
+function menufun_title() {
+    $now = format_date(time());
+    return t('It is now @time', array('@time' => $now));
+}
+
+/**
+ * Implementation of hook_permission()
+ */
+function menufun_permission() {
+    return array(
+        'receive greeting' => array(
+            'title' => t('Receive a greeting'),
+            'description' => t('Allow users receive a greeting message'),
+        ),
+    );
+}
+
+function menufun_menu_link_alter(&$item) {
+    //dsm($item);
+}

@@ -1,0 +1,4 @@
+name = Milkshake
+description = milkshake module
+core = 7.x
+package = Module Book

@@ -1,0 +1,47 @@
+<?php
+
+/**
+ * @file
+ * An example field using the Field API
+ */
+
+/**
+ * Implements hook_field_info().
+ */
+function color_example_field_info() {
+    return array(
+        'color_example_rgb' => array(
+            'label' => t('Example Color RGB'),
+            'description' => t('demonstrates a field composed of an RGB color.'),
+            'default_widget' => 'color_example_3text',
+            'default_formatter' => 'color_example_simple_text',
+        ),
+    );
+}
+
+
+/**
+ * Implements hook_field_schema().
+ */
+function color_example_field_schema($field) {
+
+    $columns = array(
+        'rgb' => array('type' => 'varchar', 'length' => 7, 'not null' => FALSE),
+    );
+
+    $indexes = array(
+        'rgb' => array('rgb'),
+    );
+
+    return array(
+        'columns' => $columns,
+        'indexes' => $indexes,
+    );
+}
+
+/**
+ * Implements hook_field_validate().
+ */
+function color_example_field_validate($entity_type, $entity, $field, $instance, $langcode, $items, &$errors) {
+
+}

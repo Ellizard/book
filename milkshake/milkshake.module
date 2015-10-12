@@ -1,0 +1,62 @@
+<?php
+
+/**
+ * Implements hook_menu().
+ */
+function milkshake_menu() {
+    $items = array();
+
+    $items['milkshake'] = array(
+        'title' => 'Milkshake flavors',
+        'access arguments' => TRUE,
+        'page callback' => 'milkshake_overview',
+        'type' => MENU_NORMAL_ITEM,
+    );
+
+    $items['milkshake_list'] = array(
+        'title' => 'List flavors',
+        'access arguments' => TRUE,
+        'type' => MENU_DEFAULT_LOCAL_TASK,
+        'weight' => 0,
+    );
+
+    $items['milkshake/add'] = array(
+        'title' => 'Add flavor',
+        'access arguments' => TRUE,
+        'page callback' => 'milkshake_add',
+        'type' => MENU_LOCAL_TASK,
+        'weight' => 1,
+    );
+
+    $items['milkshake/list/fruity'] = array(
+        'title' => 'Fruity flavors',
+        'access arguments' => TRUE,
+        'page callback' => 'milkshake_list',
+        'page arguments' => array(2), //Pass Fruity
+        'type' => MENU_LOCAL_TASK,
+    );
+
+    $items['milkshake/list/candy'] = array(
+        'title' => 'Candy flavors',
+        'access arguments' => TRUE,
+        'page callback' => 'milkshake_list',
+        'page arguments' => array(2), //Pass Candy
+        'type' => MENU_LOCAL_TASK,
+    );
+
+    return $items;
+}
+
+function milkshake_overview() {
+    $output = t('The folowing flavors are available');
+    return $output;
+}
+
+function milkshake_add() {
+    return t('A handy form to add flavirs might go here...');
+}
+
+function milkshake_list($type) {
+    return t('list @type flavors', array('@type' => $type));
+}
+
