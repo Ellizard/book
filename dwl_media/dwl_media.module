@@ -1,2 +1,82 @@
 <?php
 
+/**
+ * Implements hook_menu().
+ */
+function dwl_media_menu(){
+    $items = array();
+
+    $items['admin/config/media/dwl_media'] = array(
+        'title' => 'Download media block',
+        'description' => 'Configure download block media',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('dwl_media_form'),
+        'access callback' => TRUE,
+        'type' => MENU_NORMAL_ITEM,
+    );
+
+    return $items;
+}
+
+/**
+ * Print dwl_media_main_form
+ */
+function dwl_media_form() {
+
+    $form['block_title'] = array(
+        '#title' => 'block title',
+        '#description' => 'This title will display like block Title',
+        '#type' => 'textfield',
+    );
+
+    $form['submit'] = array(
+        '#type' => 'submit',
+        '#value' => 'Save media',
+    );
+
+    $form['add_dw_media'] = array(
+        '#type' => 'fieldset',
+        '#title' => 'Add new Downloadable media',
+        '#collapsible' => TRUE,
+        '#collapsed' => TRUE,
+    );
+
+    $form['add_dw_media']['name'] = array(
+        '#type' => 'textfield',
+        '#title' => 'link',
+        '#description' => 'Download media link name',
+    );
+
+    $form['add_dw_media']['file'] = array(
+        '#type' => 'managed_file',
+        '#title' => 'File',
+        '#description' => 'Choose file for users',
+        '#upload_location' => 'public://files/'
+    );
+
+
+
+
+
+    return $form;
+
+};
+
+/**
+ * validate media form
+ */
+function dwl_media_form_validate($form, &$form_state) {
+
+
+
+};
+
+
+
+/**
+ * Submit media form
+ */
+function dwl_media_form_submit($form, &$form_state) {
+    $block_title = $form_state['values']['block_title'];
+    drupal_set_message( t('Thanks for filling out the form, %block_title', array('%block_title' => $block_title)) );
+}
