@@ -1,0 +1,4 @@
+name = test media block
+description = test media block
+core = 7.x
+package = Module Book

@@ -29,11 +29,6 @@ function dwl_media_form() {
         '#type' => 'textfield',
     );
 
-    $form['submit'] = array(
-        '#type' => 'submit',
-        '#value' => 'Save media',
-    );
-
     $form['add_dw_media'] = array(
         '#type' => 'fieldset',
         '#title' => 'Add new Downloadable media',
@@ -54,9 +49,10 @@ function dwl_media_form() {
         '#upload_location' => 'public://files/'
     );
 
-
-
-
+    $form['submit'] = array(
+        '#type' => 'submit',
+        '#value' => 'Save media',
+    );
 
     return $form;
 
@@ -72,11 +68,41 @@ function dwl_media_form_validate($form, &$form_state) {
 };
 
 
+function dwl_media_install() {
+    if (!db_table_exists('dwl_media_table')) {
+        $dwl_media_table_schema = array(
+            'description' => 'User gained score by type, area and time.',
+            'fields' => array(
+                'dwl_media_title'	=> array('type' => 'varchar', 'length' => 256, 'not null' => TRUE, 'default' => ''),
+                'dwl_media_name'    => array('type' => 'varchar', 'length' => 256, 'not null' => TRUE, 'default' => ''),
+                'dwl_media_file'    => array('type' => 'int', 'unsigned' => TRUE, 'not null' => TRUE),
+            ),
+        );
+    }
+}
+
+function dwl_media_install_schema($module) {
+    $schema = drupal_get_schema_unprocessed($module);
+    _drupal_schema_initialize($schema, $module, FALSE);
+
+    foreach ($schema as $name => $table) {
+        db_create_table($name, $table);
+    }
+}
 
 /**
  * Submit media form
  */
 function dwl_media_form_submit($form, &$form_state) {
+    dsm($form_state);
+    db_insert('dwl_media_table')
+        ->fields(array(
+            'dwl_media_title'   => $form_state['values']['block_title'],
+            'dwl_media_name'    => $form_state['values']['name'],
+            'dwl_media_file'    => $form_state['complete form']['add_dw_media']['file']['fid']['#value'],
+        ))->execute();
+
+
     $block_title = $form_state['values']['block_title'];
     drupal_set_message( t('Thanks for filling out the form, %block_title', array('%block_title' => $block_title)) );
 }

@@ -1,0 +1,12 @@
+<?php
+
+function test_media_block_info() {
+  $block = array();
+  $block['test_media_block'] = array(
+    'info' => t('custom test media block'),
+    'description' => t('sedcd edia bloick'),
+    //'cache' => DRUPAL_CACHE_PER_ROLE,
+    'status' => TRUE,
+  );
+  return $block;
+}

@@ -1,0 +1,4 @@
+name = approval
+description = book create block
+core = 7.x
+package = Module Book

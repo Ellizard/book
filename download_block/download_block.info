@@ -1,0 +1,4 @@
+name = download block media
+description = Custom media blosk with download media file
+core = 7.x
+package = Module Book
