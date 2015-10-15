@@ -1,38 +1,96 @@
 <?php
+
+
 function download_block_block_info() {
     $block = array();
-    $block['first_block'] = array(
-        'info' => t('asdfasdfasdfdasf'),
-        'cache' => DRUPAL_CACHE_PER_ROLE,
-        'status' => TRUE,
+    $block['download_media'] = array(
+      'info' => t('Download media block'),
+      'description' => t('Block with download links'),
+      'cache' => DRUPAL_CACHE_PER_ROLE,
     );
     return $block;
 }
 
-//function download_block_block_configure($delta = '') {
-//    $form = array();
-//    if ($delta == 'first_block') {
-//        $form['block_example_string'] = array(
-//            '#type' => 'textfield',
-//            '#title' => t('block contents'),
-//            '#size' => 60,
-//            '#description' => t('test firs line block'),
-//            '#default_value' => variable_get('block_example_string', t('some text')),
-//        );
-//    }
-//    return $form;
-//}
-//
-//function download_block_block_save($delta = '', $edit = array()) {
-//    if ($delta == 'first_block') {
-//        variable_set('block_example_string', $edit['block_example_string']);
-//    }
-//}
-//
+
+
+
+
+
+function download_block_block_configure($delta = '') {
+    if ($delta == 'download_media') {
+
+    }
+}
+
+function download_block_form_alter(&$form, &$form_state) {
+
+    if ($form['module']['#value'] == 'download_block') {
+
+        $form['#tree'] = TRUE;
+        if (empty($form_state['num_names'])) {
+            $form_state['num_names'] = 1;
+        }
+        for ($i = 1; $i <= $form_state['num_names']; $i++) {
+            $form['settings']['media_fieldset'][$i] = array(
+              '#type' => 'fieldset',
+              '#title' => 'Downloadable media #' . $i,
+              '#collapsible' => TRUE,
+              '#collapsed' => TRUE,
+            );
+
+            $form['settings']['media_fieldset'][$i]['media_link'] = array(
+              '#type' => 'textfield',
+              '#title' => t('media link'),
+              '#description' => t('media link'),
+              '#default_value' => variable_get('media_link', t('some text')),
+            );
+
+            $form['settings']['add_media'] = array(
+              '#type' => 'submit',
+              '#value' => 'add another item',
+              '#submit' => array('block_example_add_item'),
+              '#required' => FALSE
+            );
+
+            $form['settings']['remove_media'] = array(
+              '#type' => 'submit',
+              '#value' => 'remove item',
+              '#submit' => array('block_example_remove_item'),
+              '#required' => FALSE
+            );
+        }
+
+    }
+
+}
+
+function block_example_add_item($form, &$form_state) {
+    $form_state['num_names']++;
+    $form_state['rebuild'] = TRUE;
+}
+
+function block_example_remove_item($form, &$form_state) {
+    if ($form_state['num_names'] > 1) {
+        $form_state['num_names']--;
+    }
+    $form_state['rebuild'] = TRUE;
+}
+
+
+function download_block_block_save($delta = '', $edit = array()) {
+    dsm(123);
+}
+
+
+
+
+
+
+
 //function download_block_block_view($delta = '') {
 //    $block = array();
 //    switch($delta) {
-//        case 'first_block':
+//        case 'download_media':
 //        $block['subject'] = t('Title of first block');
 //        $block['content'] = download_block_contents($delta);
 //        break;
@@ -43,9 +101,9 @@ function download_block_block_info() {
 //
 //function download_block_contents($which_block) {
 //    switch($which_block) {
-//        case 'first_block':
+//        case 'download_media':
 //            $result = array(
-//              '#markup' => variable_get('block_example_string', t('a default value')),
+//              '#markup' => variable_get('media_link', t('a default value')),
 //            );
 //            return $result;
 //    };

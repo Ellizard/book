@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ea8f772e-44a4-4cb0-8e62-3ad84d2381ef" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/approval/approval.info" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/approval/approval.module" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/download_block/download_block.info" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/download_block/download_block.module" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test_media/test_media.info" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test_media/test_media.module" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dwl_media/dwl_media.module" afterPath="$PROJECT_DIR$/dwl_media/dwl_media.module" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/download_block/download_block.module" afterPath="$PROJECT_DIR$/download_block/download_block.module" />
     </list>
     <ignored path="book.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,8 +37,8 @@
       <file leaf-file-name="dwl_media.module" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dwl_media/dwl_media.module">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-25.333334">
-              <caret line="38" column="39" selection-start-line="38" selection-start-column="39" selection-end-line="38" selection-end-column="39" />
+            <state vertical-scroll-proportion="-18.666666">
+              <caret line="31" column="4" selection-start-line="31" selection-start-column="4" selection-end-line="36" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -62,31 +54,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="download_block.module" pinned="false" current-in-tab="false">
+      <file leaf-file-name="download_block.module" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/download_block/download_block.module">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.821428">
-              <caret line="43" column="34" selection-start-line="43" selection-start-column="11" selection-end-line="43" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test_media.info" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test_media/test_media.info">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="3" column="21" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test_media.module" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/test_media/test_media.module">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.17920354">
-              <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+            <state vertical-scroll-proportion="0.52685714">
+              <caret line="43" column="48" selection-start-line="43" selection-start-column="48" selection-end-line="43" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -119,10 +91,10 @@
         <option value="$PROJECT_DIR$/download_block/download_block.info" />
         <option value="$PROJECT_DIR$/approval/approval.info" />
         <option value="$PROJECT_DIR$/approval/approval.module" />
-        <option value="$PROJECT_DIR$/download_block/download_block.module" />
         <option value="$PROJECT_DIR$/test_media/test_media.info" />
         <option value="$PROJECT_DIR$/test_media/test_media_module" />
         <option value="$PROJECT_DIR$/test_media/test_media.module" />
+        <option value="$PROJECT_DIR$/download_block/download_block.module" />
       </list>
     </option>
   </component>
@@ -206,7 +178,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="test_media" />
+              <option name="myItemId" value="dwl_media" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -655,10 +627,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dwl_media/dwl_media.module">
+    <entry file="file://$PROJECT_DIR$/test_media/test_media.module">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-25.333334">
-          <caret line="38" column="39" selection-start-line="38" selection-start-column="39" selection-end-line="38" selection-end-column="39" />
+        <state vertical-scroll-proportion="-6.0">
+          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
           <folding />
         </state>
       </provider>
@@ -671,18 +643,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/download_block/download_block.module">
+    <entry file="file://$PROJECT_DIR$/dwl_media/dwl_media.module">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.821428">
-          <caret line="43" column="34" selection-start-line="43" selection-start-column="11" selection-end-line="43" selection-end-column="34" />
+        <state vertical-scroll-proportion="-18.666666">
+          <caret line="31" column="4" selection-start-line="31" selection-start-column="4" selection-end-line="36" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test_media/test_media.module">
+    <entry file="file://$PROJECT_DIR$/download_block/download_block.module">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17920354">
-          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+        <state vertical-scroll-proportion="0.52685714">
+          <caret line="43" column="48" selection-start-line="43" selection-start-column="48" selection-end-line="43" selection-end-column="48" />
           <folding />
         </state>
       </provider>
