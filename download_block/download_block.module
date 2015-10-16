@@ -1,6 +1,9 @@
 <?php
 
-
+/**
+ * Implements hook_block_info().
+ * @return array
+ */
 function download_block_block_info() {
     $block = array();
     $block['download_media'] = array(
@@ -11,67 +14,88 @@ function download_block_block_info() {
     return $block;
 }
 
-
-
-
-
-
+/**
+ * Implements hook_block_configure().
+ * @param string $delta
+ */
 function download_block_block_configure($delta = '') {
     if ($delta == 'download_media') {
 
     }
 }
 
+/**
+ * Implements hook_form_alter().
+ * @param $form
+ * @param $form_state
+ */
 function download_block_form_alter(&$form, &$form_state) {
 
+    if ($form['module']['#value'] == 'download_block') {
+
+      $settings = variable_get('download_item', array());
 
 
-    if ($form['delta']['#value'] == 'download_media') {
 
-        if (empty($form_state['num_names'])) {
-            $form_state['num_names'] = 1;
+      if (empty($form_state['num_names'])) {
+        $form_state['num_names'] = 1;
+      } elseif ( $form_state['num_names'] !== 1) {
+        $form_state['num_names'] = count($settings);
+        foreach ($settings as $key => $value) {
+          $form['settings']['download_item'][$key]['media_link'] = $value;
+          $form['settings']['download_item']['#tree'] = TRUE;
         }
+      }
 
-        for ($i = 1; $i <= $form_state['num_names']; $i++) {
-            $form['settings']['media_fieldset'][$i] = array(
-              '#type' => 'fieldset',
-              '#title' => 'Downloadable media #' . $i,
-              '#collapsible' => TRUE,
-              '#collapsed' => TRUE,
-            );
+      for ($i = 1; $i <= $form_state['num_names']; $i++) {
+        $form['settings']['download_item'][$i] = array(
+          '#type' => 'fieldset',
+          '#title' => 'Downloadable media #' . $i,
+          '#collapsible' => TRUE,
+          '#collapsed' => TRUE,
+        );
 
-            $form['settings']['media_fieldset'][$i]['#tree'] = TRUE;
+        $form['settings']['download_item']['#tree'] = TRUE;
 
-            $form['settings']['media_fieldset'][$i]['media_link'] = array(
-              '#type' => 'textfield',
-              '#title' => t('media link'),
-              '#default_value' => variable_get('media_link', t('some text')),
-            );
+        $form['settings']['download_item'][$i]['media_link'] = array(
+          '#type' => 'textfield',
+          '#title' => t('media link ' . $i),
+          '#default_value' => $settings[$i]['media_link'],
+        );
 
-            $form['settings']['add_media'] = array(
-              '#type' => 'submit',
-              '#value' => 'add another item',
-              '#submit' => array('block_example_add_item'),
-              '#required' => FALSE
-            );
+        $form['settings']['add_media'] = array(
+          '#type' => 'submit',
+          '#value' => 'add another item',
+          '#submit' => array('block_example_add_item'),
+          '#required' => FALSE
+        );
 
-            $form['settings']['remove_media'] = array(
-              '#type' => 'submit',
-              '#value' => 'remove item',
-              '#submit' => array('block_example_remove_item'),
-              '#required' => FALSE
-            );
-        }
-
+        $form['settings']['remove_media'] = array(
+          '#type' => 'submit',
+          '#value' => 'remove item',
+          '#submit' => array('block_example_remove_item'),
+          '#required' => FALSE
+        );
+      }
     }
-
 }
 
+/**
+ * Add item to block list
+ * @param $form
+ * @param $form_state
+ */
 function block_example_add_item($form, &$form_state) {
     $form_state['num_names']++;
     $form_state['rebuild'] = TRUE;
 }
 
+
+/**
+ * remove item from block list
+ * @param $form
+ * @param $form_state
+ */
 function block_example_remove_item($form, &$form_state) {
     if ($form_state['num_names'] > 1) {
         $form_state['num_names']--;
@@ -79,19 +103,27 @@ function block_example_remove_item($form, &$form_state) {
     $form_state['rebuild'] = TRUE;
 }
 
-
+/**
+ * Implements hook_block_save().
+ * @param string $delta
+ * @param array $edit
+ */
 function download_block_block_save($delta = '', $edit = array()) {
     if ($delta == 'download_media') {
-        dsm($edit);
+
+      dsm($edit);
+      variable_set('download_item', $edit['download_item']);
+
+
     }
 }
 
 
-
-
-
-
-
+/**
+ * Implements hook_block_view().
+ * @param string $delta
+ * @return array
+ */
 function download_block_block_view($delta = '') {
     $block = array();
     switch($delta) {
@@ -102,14 +134,19 @@ function download_block_block_view($delta = '') {
     }
     return $block;
 }
-//
-//
+
+
 function download_block_contents($which_block) {
-//    switch($which_block) {
-//        case 'download_media':
-//            $result = array(
-//              '#markup' => variable_get('media_link', t('a default value')),
-//            );
-//            return $result;
-   };
-//}
+    switch($which_block) {
+        case 'download_media':
+          $output = '';
+          $media_block_result = variable_get('download_item');
+          //dsm($media_block_result);
+          foreach ($media_block_result as $key => $value) {
+            $output .= '<a href="">' . $value['media_link'] . '</a><br>';
+          }
+
+          return $output;
+    }
+};
+
